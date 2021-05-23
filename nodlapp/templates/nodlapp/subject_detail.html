@@ -1,0 +1,25 @@
+{% extends "nodlapp/base.html" %}
+
+{% block content %}
+
+<h1 class="mb-2">{{object.title}}</h1>
+<p>{{object.description}}</p>
+<p class="text-muted mt-2 mb-5">credits: {{object.credits}}</p>
+
+{% for week in sweeks %}
+    <h3 class="mt-2 mb-2">
+        <a href="{% url 'week-detail' week.id %}">
+            {{week.title}}
+        </a>
+    </h3>
+    <span class="text-muted"> Material:</span> <a class="cc5" href="{{week.material.url}}" download> {{week.material.name}}</a>
+    <br><br>
+    {% for s in submissions %}
+        {% if s.week == week.id %}
+        <span class="text-muted"> Submissions: </span>{{s.total}} 
+        {% endif %}
+    {% endfor %}
+    <hr>
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "nodlapp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3 class="mb-2">{{object.subject}}</h3>
+<h1 class="mb-4">{{object.title}}</h1>
+<p class="mb-2 text-muted">{{object.description}}</p>
+<span class="text-muted"> Material:</span> <a class="cc5" href="{{object.material.url}}" download> {{object.material.name}}</a>
+<hr>
+
+{{hmm}}
+
+<h1 class="mb-4">Student submissions</h1>
+{% for sub in submissions %}
+        <div class="mb-2"> <span class="text-muted mb-2">by {{sub.student}}:</span><a class="cc5" href="{{sub.file.url}}" download> {{sub.file.name}}</a></div> 
+{% endfor %}
+
+<a class="mt-4 btn btn-outline-light" href="{% url 'create-submission' week.id %}">Submission form</a>
+
+
+{% endblock content %}
